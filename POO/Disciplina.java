@@ -1,9 +1,9 @@
-package poo.utfpr;
+package POO;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Disciplina implements Comparable<Disciplina> {
+public class Disciplina {
 	private String codigo;
 	private String nome;
 	private int ano;
@@ -15,20 +15,6 @@ public class Disciplina implements Comparable<Disciplina> {
 	private String objetivo;
 	private String ementa;
 	private String bibliografia;
-	
-	public Disciplina(String codigo, String nome, int ano, int semestre, Professor professor) {
-		this.codigo = codigo;
-		this.nome = nome;
-		this.ano = ano;
-		this.semestre = semestre;
-		this.professor = professor;
-		this.alunos = new ArrayList<Aluno>();
-		this.modalidade = "Presencial";
-		this.cargaHoraria = 0;
-		this.objetivo = "";
-		this.ementa = "";
-		this.bibliografia = "";
-	}
 	
 	
 	public String getCodigo() {
@@ -112,37 +98,11 @@ public class Disciplina implements Comparable<Disciplina> {
 		String str = "Codigo: " + codigo + "\nNome: " + nome + "\nAno: " + ano
 					+ "\nSemestre: " + semestre + "\nProfessor: " + professor.getNome() + "Alunos: ";
 		for (int i = 0; i<alunos.size(); i++) {
-			str+= "\n ->" + alunos.get(i).getSobrenome();
+			str+= "\n ->" + alunos.get(i).getNome();
 		}
 		str+= "\nModalidade: " + modalidade + "\nCarga horaria: " + cargaHoraria + "\nObjetivo: "
 				+ objetivo + "\nEmenta: " + ementa + "\nBibliografia: " + bibliografia;
 		return str;
 	}
-	@Override
-	public int compareTo(Disciplina o) {
-		return this.codigo.compareTo(o.codigo);
-	}
-	@Override
-	public int hashCode() {
-		return Objects.hash(alunos, ano, bibliografia, cargaHoraria, codigo, ementa, modalidade, nome, objetivo,
-				professor, semestre);
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Disciplina other = (Disciplina) obj;
-		return Objects.equals(alunos, other.alunos) && ano == other.ano
-				&& Objects.equals(bibliografia, other.bibliografia) && cargaHoraria == other.cargaHoraria
-				&& Objects.equals(codigo, other.codigo) && Objects.equals(ementa, other.ementa)
-				&& Objects.equals(modalidade, other.modalidade) && Objects.equals(nome, other.nome)
-				&& Objects.equals(objetivo, other.objetivo) && Objects.equals(professor, other.professor)
-				&& semestre == other.semestre;
-	}
-	
 	
 }
